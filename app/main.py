@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers import auth, users, posts, feed # IMPORTANT: import models
+from app.routers import auth, users, posts, feed, like # IMPORTANT: import models
 from app.db.database import Base, engine
 from app.models import user  # import all models
 from fastapi.middleware.cors import CORSMiddleware
@@ -25,3 +25,4 @@ app.include_router(auth.router)
 app.include_router(users.router)
 app.include_router(posts.router)
 app.include_router(feed.router)
+app.include_router(like.router)

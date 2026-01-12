@@ -21,3 +21,4 @@ class User(Base):
     gender = Column(String(20), nullable=True)
 
     posts = relationship("Post", back_populates="user")
+    likes = relationship("Like", back_populates="user")

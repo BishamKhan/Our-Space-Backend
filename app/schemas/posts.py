@@ -1,10 +1,9 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List
 from datetime import date
 from datetime import datetime
 
-
-class UserInfo(BaseModel):
+class UserResponse(BaseModel):
     id: int
     username: str
     email: str
@@ -19,18 +18,26 @@ class UserInfo(BaseModel):
 
     class Config:
         orm_mode = True
-        
-class PostCreate(BaseModel):
-    content: str
-    media_url: Optional[str] = None
 
+class LikeResponse(BaseModel):
+    user: UserResponse
+    created_at: datetime
+
+    class Config:
+        orm_mode = True
+
+class PostCreate(BaseModel):
+    content: Optional[str]
+    media_url: Optional[str]
 
 class PostResponse(BaseModel):
-    id:int
-    content: str
-    media_url: Optional[str] = None
-    created_at: datetime  # Pydantic will parse datetime
-    user: UserInfo 
+    id: int
+    content: Optional[str]
+    media_url: Optional[str]
+    created_at: datetime
+    likes_count: int
+    likes: List[LikeResponse]  # all likers
+    user: UserResponse
 
     class Config:
         orm_mode = True

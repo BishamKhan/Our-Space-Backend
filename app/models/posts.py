@@ -12,5 +12,9 @@ class Post(Base):
     content = Column(Text)
     media_url = Column(String(255), nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
+    likes_count = Column(Integer, default=0, nullable=False)
+
+
     
     user = relationship("User", back_populates="posts")
+    likes = relationship("Like", back_populates="post")

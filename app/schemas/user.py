@@ -13,15 +13,6 @@ class UserCreate(BaseModel):
     profile_image: Optional[str] = None
     cover_image: Optional[str] = None
 
-
-class UserResponse(BaseModel):
-    id: int
-    username: str
-    email: str
-
-    class Config:
-        from_attributes = True
-
 class UserLoginResponse(BaseModel):
     id: int
     username: str
