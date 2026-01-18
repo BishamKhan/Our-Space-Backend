@@ -26,6 +26,14 @@ class LikeResponse(BaseModel):
     class Config:
         orm_mode = True
 
+class CommentResponse(BaseModel):
+    user: UserResponse
+    content:str
+    created_at: datetime
+
+    class Config:
+        orm_mode = True
+
 class PostCreate(BaseModel):
     content: Optional[str]
     media_url: Optional[str]
@@ -37,7 +45,13 @@ class PostResponse(BaseModel):
     created_at: datetime
     likes_count: int
     likes: List[LikeResponse]  # all likers
+    comments_count: int
+    comments: List[CommentResponse]
     user: UserResponse
 
     class Config:
         orm_mode = True
+
+class CreateComment(BaseModel):
+    id:int
+    content:str

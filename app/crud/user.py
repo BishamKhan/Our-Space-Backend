@@ -36,6 +36,13 @@ def update_profile_pic(db:Session,user,profile_image_url:str):
     db.refresh(user)
     return user
 
+def update_cover_pic(db:Session,user, cover_image_url:str):
+    user.cover_image = cover_image_url
+
+    db.commit()
+    db.refresh(user)
+    return user
+
 def update_user_profile(db: Session, user: User, data):
     if data.full_name is not None:
         user.full_name = data.full_name
@@ -59,3 +66,12 @@ def update_user_profile(db: Session, user: User, data):
 
 def getUserInfo(db:Session, user):
     return db.query(User).filter(user.id == User.id).first()
+
+def SearchUser(db: Session, query: str):
+    return (
+        db.query(User)
+        .filter(User.username.ilike(f"%{query}%"))
+        .limit(10)
+        .all()
+    )
+    

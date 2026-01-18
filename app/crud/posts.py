@@ -19,3 +19,11 @@ def create_post(db: Session, user_id: int, content: str,media_url:str):
 
 def get_posts(db:Session, user_id:int):
     return db.query(Post).filter(user_id == Post.user_id).order_by(Post.created_at.desc()).all()
+
+def get_first_post(db: Session, user_id: int):
+    return (
+        db.query(Post)
+        .filter(Post.user_id == user_id)
+        .order_by(Post.created_at.asc())
+        .first()
+    )
