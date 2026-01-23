@@ -6,6 +6,7 @@ from .posts import PostResponse
 
 class UserCreate(BaseModel):
     username: str
+    full_name: str
     email: str
     password: str
     gender: Optional[str] = None

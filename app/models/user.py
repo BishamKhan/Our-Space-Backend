@@ -23,5 +23,6 @@ class User(Base):
     following_count = Column(Integer, default=0, nullable=False)
 
     posts = relationship("Post", back_populates="user")
+    story = relationship("Story", back_populates="user")
     likes = relationship("Like", back_populates="user")
     comments = relationship("Comment", back_populates="user")
